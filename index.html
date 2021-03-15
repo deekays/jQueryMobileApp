@@ -1,0 +1,268 @@
+<!--
+Mobile Web dev
+Template for General Purpose html5 page with JQuery Mobile
+Created by: Stephen Draper
+email: sdraper6452@conestogac.on.ca
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Title</title>
+    
+        <!-- library scripts -->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        
+        <!-- library css-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+
+        <!-- jquery mobile validation -->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!-- my libraries -->
+        <link rel="stylesheet" href="css/myStyle.css">
+
+        <!-- my libraries A2-->
+        <script src="js/SDDatabase.js"></script>
+        <script src="js/SDFacade.js"></script>
+        <script src="js/SDFeedbackDAL.js"></script>
+        <script src="js/SDGlobal.js"></script>
+        <script src="js/SDUtil.js"></script>
+
+    </head>
+    <body>
+        <!-- Home Page -->
+        <div data-role="page" id="SDHomePage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>SD Feedback A2</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#SDHomePage" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#SDAddFeedbackPage" data-icon="plus" data-theme="a">Add</a></li>
+                        <li><a href="#SDViewFeedbackPage" data-icon="grid" data-theme="a">Reviews</a></li>
+                        <li><a href="#SDSettingsPage" data-icon="gear" data-theme="a">Settings</a></li>
+
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <h2>Stephen Draper's Feedback A2 App</h2>
+                <p>Welcome to the Stephen Draper's Feedback A2 app. A prototype designed for mobile programming class.
+                    This is the first iteration of the app to keep track of different places you visited along with your reviews.</p>
+                <img src="img/SD-image.png" alt="Big ol dragon picture" class="imageFullsize">
+                <p>Please feel free to contact me if you have any suggestions!</p>
+
+                <a href="#" id="SDCallLink" data-role="button" data-icon="plus" data-iconpos="left">Call: 519.748.5220</a>
+                <a href="#" id="SDEmailLink" data-role="button" data-icon="plus" data-iconpos="left">sdraper6452@conestogac.on.ca</a> <!-- TO DO -->
+                <p>Website:</p>
+                <a href="#" id="SDConestogaCollegeLink" data-role="button" data-icon="plus" data-iconpos="left">Conestoga College</a>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2021 Stephen Draper</h4>
+            </footer>
+        </div>
+
+
+        <!-- Feedback Page -->
+        <div data-role="page" id="SDAddFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Add Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#SDHomePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#SDAddFeedbackPage" data-icon="plus" data-theme="a" class="ui-btn-active ui-state-persist">Add</a></li>
+                        <li><a href="#SDViewFeedbackPage" data-icon="grid" data-theme="a">Reviews</a></li>
+                        <li><a href="#SDSettingsPage" data-icon="gear" data-theme="a">Settings</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <form id="SDFeedbackForm" name="SDFeedbackForm">
+                    <label for="SDBusinessName">Business Name:</label>
+                    <input type="text" id="SDBusinessName" name="SDBusinessName">
+                    <label for="SDFoodType">Type:</label>
+                    <select id="SDFoodType" name="SDFoodType">
+                        <option value="other">Other</option>
+                        <option value="asian">Asian</option>
+                        <option value="canadian">Canadian</option>
+                    </select>
+                    <label for="SDReviewerEmail">Reviewer Email:</label>
+                    <input type="text" id="SDReviewerEmail" name="SDReviewerEmail">
+                    <label for="SDReviewerComments">Reviewer Comments:</label>
+                    <textarea id="SDReviewerComments" name="SDReviewerComments"></textarea>
+
+                    <label for="SDReviewDate">Review Date:</label>
+                    <input type="date" id="SDReviewDate" name="SDReviewDate">
+
+                    <label for="SDChkRatings">Do you want to add your ratings?</label><input type="checkbox" id="SDChkRatings" name="SDChkRatings">
+
+                    <div id="SDFoodRatings" hidden>
+                        <label for="SDFoodQualityRating">Food Quality (0-5):</label>
+                        <input type="number" id="SDFoodQualityRating" name="SDFoodQualityRating" value="0">
+
+                        <label for="SDServiceRating">Service (0-5):</label>
+                        <input type="number" id="SDServiceRating" name="SDServiceRating" value="0">
+
+                        <label for="SDValueRating">Value (0-5):</label>
+                        <input type="number" id="SDValueRating" name="SDValueRating" value="0">
+
+                        <label for="SDOverallRating">Overall Rating (Calculated):</label>
+                        <input type="text" id="SDOverallRating" name="SDOverallRating" value="0%" disabled>
+                    </div>
+                    <fieldset data-role="controlgroup" data-type="horizontal"> <!-- outside form so it doesn't redirect anywhere -->
+                        <button type="button" data-role="button" id="SDBtnSave" name="SDBtnSave" class="test">Save</button>
+                    </fieldset>
+                </form>
+
+
+
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2021 Stephen Draper</h4>
+            </footer>
+        </div>
+
+
+        <!-- View Feedback Page -->
+        <div data-role="page" id="SDViewFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>List of Reviews</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#SDHomePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#SDAddFeedbackPage" data-icon="plus" data-theme="a">Add</a></li>
+                        <li><a href="#SDViewFeedbackPage" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                        <li><a href="#SDSettingsPage" data-icon="gear" data-theme="a">Settings</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <ul id="SDReviewList" data-role="listview" class="ui-listview-inset" data-icon="false">
+                    <li>
+                        <a href="#SDEditFeedbackPage">
+                            <h4>Business Name: Billy's Burgers</h4>
+                            <p class="tinyText">Reviewer Email: jimmy@gmail.com</p>
+                            <p class="tinyText">Comments: I found a wasp in my burger.</p>
+                            <p class="tinyText">Overall Rating: 90%</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#SDEditFeedbackPage">
+                            <h4>Business Name: Whips - Not Just for Horses Anymore!</h4>
+                            <p class="tinyText">Reviewer Email: anon@gmail.com</p>
+                            <p class="tinyText">Comments: My family must never know.</p>
+                            <p class="tinyText">Overall Rating: 100%</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2021 Stephen Draper</h4>
+            </footer>
+        </div>
+
+
+        <!-- Edit Feedback Page -->
+        <div data-role="page" id="SDEditFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Modify Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#SDHomePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#SDAddFeedbackPage" data-icon="plus" data-theme="a">Add</a></li>
+                        <li><a href="#SDViewFeedbackPage" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                        <li><a href="#SDSettingsPage" data-icon="gear" data-theme="a" >Settings</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <form id="SDEditReviewForm" name="SDEditReviewForm">
+                    <label for="SDEditBusinessName">Business Name:</label>
+                    <input type="text" id="SDEditBusinessName" name="SDEditBusinessName" value="Billy's Burgers">
+                    <label for="SDEditFoodType">Type:</label>
+                    <select id="SDEditFoodType" name="SDEditfoodType">
+                        <option value="other">Other</option>
+                        <option value="asian">Asian</option>
+                        <option value="canadian">Canadian</option>
+                    </select>
+                    <label for="SDEditReviewerEmail">Reviewer Email:</label>
+                    <input type="text" id="SDEditReviewerEmail" name="SDEditReviewerEmail" value="jimmy@gmail.com">
+                    <label for="SDEditReviewerComments">Reviewer Comments:</label>
+                    <textarea id="SDEditReviewerComments" name="SDEditReviewerComments">I found a wasp in my burger.</textarea>
+
+                    <label for="SDEditReviewDate">Review Date:</label>
+                    <input type="date" id="SDEditReviewDate" name="SDEditReviewDate">
+
+                    <label for="SDEditChkRatings">Do you want to add your ratings?</label><input type="checkbox" id="SDEditChkRatings" name="SDEditChkRatings">
+                    <div id="SDEditFoodRatings" hidden>
+                        <label for="SDEditFoodQualityRating">Food Quality (0-5):</label>
+                        <input type="number" id="SDEditFoodQualityRating" name="SDEditFoodQualityRating" value="0">
+
+                        <label for="SDEditServiceRating">Service (0-5):</label>
+                        <input type="number" id="SDEditServiceRating" name="SDEditServiceRating" value="0">
+
+                        <label for="SDEditValueRating">Value (0-5):</label>
+                        <input type="number" id="SDEditValueRating" name="SDEditValueRating" value="0">
+
+                        <label for="SDEditOverallRating">Overall Rating (Calculated):</label>
+                        <input type="text" id="SDEditOverallRating" name="SDEditOverallRating" value="0%" disabled>
+                    </div>
+
+
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <button type="button" data-role="button" id="SDBtnCancel" name="SDBtnCancel">Cancel</button>
+                        <button type="button" data-role="button" id="SDBtnDelete" name="SDBtnDelete">Delete</button>
+                        <button type="button" data-role="button" id="SDBtnUpdate" name="SDBtnUpdate">Update</button>
+                    </fieldset>
+                </form>
+
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2021 Stephen Draper</h4>
+            </footer>
+        </div>
+
+
+
+        <!-- Settings Page -->
+        <div data-role="page" id="SDSettingsPage">
+            <header data-role="header" data-position="fixed" data-theme="b">
+                <h1>Settings</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#SDHomePage" data-icon="home" data-theme="a">Home</a></li>
+                        <li><a href="#SDAddFeedbackPage" data-icon="plus" data-theme="a">Add</a></li>
+                        <li><a href="#SDViewFeedbackPage" data-icon="grid" data-theme="a" >Reviews</a></li>
+                        <li><a href="#SDSettingsPage" data-icon="gear" data-theme="a" class="ui-btn-active ui-state-persist">Settings</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <section data-role="content">
+                <form id="SDSettingsForm" name="SDSettingsForm">
+                    <label for="SDDefaultReviewerEmail">Default Reviewer Email:</label>
+                    <input type="text" id="SDDefaultReviewerEmail" name="SDDefaultReviewerEmail" value="sdraper6452@conestogac.on.ca">
+
+                    <button type="button" data-role="button" id="SDBtnSaveDefault" name="SDBtnSaveDefault">Save Defaults</button>
+                    <button type="button" data-role="button" id="SDBtnClearDB" name="SDBtnClearDB">Clear Database</button>
+                </form>
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="b">
+                <h4>&copy; 2021 Stephen Draper</h4>
+            </footer>
+        </div>
+
+    </body>
+</html>

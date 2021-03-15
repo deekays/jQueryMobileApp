@@ -1,0 +1,53 @@
+.imageFullsize {
+    width: 100%;
+    height: auto;
+}
+
+#SDBtnSave {
+    background-color: #005599;
+    color: white;
+    font-weight: normal;
+}
+
+#SDBtnUpdate {
+    background-color: #005599;
+    color: white;
+    border:none;
+    font-weight: normal;
+}
+
+#SDBtnDelete {
+    background-color: #1b1b1b;
+    color: white;
+    border:none;
+    font-weight: normal;
+}
+
+#SDBtnCancel {
+    background-color: yellow;
+    border:none;
+    font-weight: normal;
+}
+
+#SDBtnSaveDefault {
+    background-color: #005599;
+    color: white;
+    font-weight: normal;
+}
+
+#SDBtnClearDB {
+    background-color: #1b1b1b;
+    color:white;
+    font-weight: normal;
+}
+
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error{
+    border: 1px red solid;
+}
